@@ -229,7 +229,7 @@ const updateUI = function (account) {
 };
 
 // Implementing Login
-let currentAccount;
+let currentAccount, timer;
 
 // lose inputLogin focus
 const emptyInputLogin = function () {
@@ -262,8 +262,8 @@ btnLogin.addEventListener('click', function (e) {
     updateUI(currentAccount);
 
     // timer for each account log in
-    // logOutTimer();
-    startLogOutTimer();
+    if (timer) clearInterval(timer);
+    timer = startLogOutTimer();
   } else if (
     !currentAccount?.username ||
     currentAccount?.pin !== +inputLoginPin.value
@@ -343,6 +343,10 @@ const transfer = function (accounts) {
 
     //lose inputTransfer focus
     emptyInputTransfer();
+
+    // restart timer
+    clearInterval(timer);
+    timer = startLogOutTimer();
   });
 };
 transfer(accounts);
@@ -377,6 +381,10 @@ btnLoan.addEventListener('click', function (e) {
 
   inputLoanAmount.value = '';
   inputLoanAmount.blur();
+
+  // restart timer
+  clearInterval(timer);
+  timer = startLogOutTimer();
 });
 
 // Implementing close account
@@ -425,7 +433,7 @@ btnClose.addEventListener('click', function (e) {
 // using manual formatting
 /*
 // create the primary function
-const logOutTimer = function () {
+const startLogOutTimer = function () {
   // set time to 5 minutes
   let time = 600;
 
@@ -451,15 +459,16 @@ const logOutTimer = function () {
   // call the time every second (setInterval)
   tick();
   const timer = setInterval(tick, 1000);
+  return timer;
 };
 */
 
 // using internationalizing
-let timer;
+
 const startLogOutTimer = () => {
   timer && clearInterval(timer);
 
-  let time = 10 * 1000;
+  let time = 600 * 1000;
   const tick = () => {
     const timeFormat = new Intl.DateTimeFormat(navigator.language, {
       minute: '2-digit',
@@ -470,15 +479,14 @@ const startLogOutTimer = () => {
     labelTimer.textContent = timeFormat;
 
     if (time === 0) {
-      // time = 20 * 1000;
       clearInterval(timer);
       containerApp.style.opacity = 0;
       labelWelcome.textContent = `Log in to get started`;
     }
-    // time = 0;
     time -= 1000;
   };
 
   tick();
   timer = setInterval(tick, 1000);
+  return timer;
 };
