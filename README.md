@@ -10,10 +10,12 @@ A full bank app that helps members only who have accounts to:
   minimum amount is 10 and maximum amount is their current total balance
 - close their accounts only for account that currently logged in.
 
-This app shows also the current real date and time
-Ascending sorting for movements.
-10 minutes timer decreases since account has logged in
-Accounts that are registered:
+This app also:
+shows a welcome message to this member after login and the current real date and time.
+shows movements in an ascending sort.
+has a 00:10:00 minutes timer starts decreasing once account has been idle and if the time passed, account logs out.
+
+Accounts that has been registered are:
   username: js    pin: 1111    Porugal
   username: jd    pin: 2222    USA
   username: de    pin: 3333    Egypt
