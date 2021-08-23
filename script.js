@@ -362,12 +362,13 @@ btnLoan.addEventListener('click', function (e) {
   );
 
   const loanAction = function () {
+    if (loanAmount > 10){
     currentAccount.movements.push(loanAmount);
     currentAccount.movementsDates.push(new Date());
-    updateUI(currentAccount);
+    updateUI(currentAccount);}
   };
 
-  if (checkDeposits && loanAmount > 0) {
+  if (checkDeposits && loanAmount > 10) {
     setTimeout(loanAction, 3000);
 
     // set button one use only
@@ -377,7 +378,7 @@ btnLoan.addEventListener('click', function (e) {
   if (!checkDeposits)
     alert(`You don't have the minimun credit for this loan❗`);
 
-  if (loanAmount < 10) alert(`Please enter an allowed amount❗`);
+  if (loanAmount < 10) alert(`Please enter an allowed amount > 10❗`);
 
   inputLoanAmount.value = '';
   inputLoanAmount.blur();
