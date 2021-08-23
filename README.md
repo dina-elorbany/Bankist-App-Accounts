@@ -9,6 +9,7 @@ A full bank app that helps members only who have accounts to:
   acount has at least 1 movement with 0.1 of the loan reaquested
   minimum amount is 10 and maximum amount is their current total balance
 - close their accounts only for account that currently logged in.
+
 This app shows also the current real date and time
 Ascending sorting for movements.
 10 minutes timer decreases since account has logged in
